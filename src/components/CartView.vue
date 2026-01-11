@@ -3,9 +3,11 @@ import { ref, computed } from 'vue'
 import Breadcrumbs from './Breadcrumbs.vue'
 import ServiceIcons from './ServiceIcons.vue'
 import { useCartStore } from '../stores/cart'
+import { useViewStore } from '../stores/view'
 
-const breadcrumbs = ['Shopping Cart']
+const breadcrumbs = ['Carrito de Compras']
 const cartStore = useCartStore()
+const viewStore = useViewStore()
 
 // Use store state
 const cartItems = computed(() => cartStore.cartItems)
@@ -23,15 +25,15 @@ const isDiscountOpen = ref(true)
     <div class="container">
       <Breadcrumbs :items="breadcrumbs" />
       
-      <h1 class="page-title">Shopping Cart</h1>
+      <h1 class="page-title">Carrito de Compras</h1>
 
       <div class="cart-layout">
         <!-- Cart Items Table Left -->
         <div class="cart-items-section">
           <div class="cart-header-row">
-            <div class="col-item">Item</div>
-            <div class="col-price">Price</div>
-            <div class="col-qty">Qty</div>
+            <div class="col-item">Artículo</div>
+            <div class="col-price">Precio</div>
+            <div class="col-qty">Cant</div>
             <div class="col-sub">Subtotal</div>
             <div class="col-action"></div>
           </div>
@@ -60,54 +62,54 @@ const isDiscountOpen = ref(true)
           
           <div class="cart-actions-row">
              <div class="left-btns">
-                <button class="btn btn-outline">Continue Shopping</button>
-                <button class="btn btn-black">Clear Shopping Cart</button>
+                <button class="btn btn-outline" @click="viewStore.navigateTo('catalog')">Continuar Comprando</button>
+                <button class="btn btn-black" @click="cartStore.clearCart()">Vaciar Carrito</button>
              </div>
-             <button class="btn btn-black">Update Shopping Cart</button>
+             <button class="btn btn-black">Actualizar Carrito</button>
           </div>
         </div>
 
         <!-- Summary Sidebar Right -->
         <div class="cart-summary-sidebar">
-           <h3 class="summary-title">Summary</h3>
+           <h3 class="summary-title">Resumen</h3>
            
            <!-- Accordion: Estimate Shipping -->
            <div class="accordion-item">
               <button class="accordion-head" @click="isShippingOpen = !isShippingOpen">
-                 Estimate Shipping and Tax <span>{{ isShippingOpen ? '▲' : '∨' }}</span>
+                 Estimar Envío e Impuestos <span>{{ isShippingOpen ? '▲' : '∨' }}</span>
               </button>
               <div v-show="isShippingOpen" class="accordion-body">
-                 <p class="est-text">Enter your destination to get a shipping estimate.</p>
+                 <p class="est-text">Ingresa tu destino para obtener un estimado de envío.</p>
                  
                  <div class="form-group-sm">
-                    <label>Country</label>
-                    <select class="input-sm"><option>Australia</option></select>
+                    <label>País</label>
+                    <select class="input-sm"><option>México</option></select>
                  </div>
                  
                  <div class="form-group-sm">
-                    <label>State/Province</label>
+                    <label>Estado/Provincia</label>
                     <input type="text" class="input-sm" />
                  </div>
                  
                  <div class="form-group-sm">
-                    <label>Zip/Postal Code</label>
+                    <label>Código Postal</label>
                     <input type="text" class="input-sm" />
                  </div>
                  
                  <div class="shipping-methods">
                     <div class="radio-group">
-                       <label>Standard Rate</label>
+                       <label>Tarifa Estándar</label>
                        <div class="radio-row">
                           <input type="radio" name="shipping" checked />
-                          <span>Price may vary depending on the item/destination. Shop Staff will contact you. $21.00</span>
+                          <span>El precio puede variar según el artículo/destino. El personal se contactará contigo. $21.00</span>
                        </div>
                     </div>
                     
                     <div class="radio-group">
-                       <label>Pickup from store</label>
+                       <label>Recoger en tienda</label>
                        <div class="radio-row">
                           <input type="radio" name="shipping" />
-                          <span>1234 Street Address City Address, 1234 $0.00</span>
+                          <span>Calle Falsa 1234, Ciudad, 1234 $0.00</span>
                        </div>
                     </div>
                  </div>
@@ -117,33 +119,33 @@ const isDiscountOpen = ref(true)
            <!-- Accordion: Discount -->
            <div class="accordion-item">
               <button class="accordion-head" @click="isDiscountOpen = !isDiscountOpen">
-                 Apply Discount Code <span>{{ isDiscountOpen ? '▲' : '∨' }}</span>
+                 Aplicar Código de Descuento <span>{{ isDiscountOpen ? '▲' : '∨' }}</span>
               </button>
               <div v-show="isDiscountOpen" class="accordion-body">
-                  <label class="form-label">Enter discount code</label>
-                  <input type="text" placeholder="Enter Discount code" class="discount-input" />
-                  <button class="btn btn-outline-blue btn-block apply-btn">Apply Discount</button>
+                  <label class="form-label">Ingresa código de descuento</label>
+                  <input type="text" placeholder="Ingresa código" class="discount-input" />
+                  <button class="btn btn-outline-blue btn-block apply-btn">Aplicar Descuento</button>
               </div>
            </div>
            
            <!-- Totals -->
            <div class="summary-totals">
               <div class="total-row"><span>Subtotal</span> <span>${{ subtotal.toLocaleString('en-US', {minimumFractionDigits: 2}) }}</span></div>
-              <div class="total-row"><span>Shipping</span> <span>${{ shipping.toFixed(2) }}</span></div>
-              <p class="shipping-note">(Standard Rate - Price may vary depending on the item/destination. TECS Staff will contact you.)</p>
+              <div class="total-row"><span>Envío</span> <span>${{ shipping.toFixed(2) }}</span></div>
+              <p class="shipping-note">(Tarifa Estándar - El precio puede variar según el destino. El personal de TECS se pondrá en contacto.)</p>
               
-              <div class="total-row"><span>Tax (10%)</span> <span>${{ tax.toFixed(2) }}</span></div>
+              <div class="total-row"><span>Impuestos (10%)</span> <span>${{ tax.toFixed(2) }}</span></div>
               
               <div class="total-row grand-total">
-                 <span>Order Total</span> <span>${{ total.toLocaleString('en-US', {minimumFractionDigits: 2}) }}</span>
+                 <span>Total del Pedido</span> <span>${{ total.toLocaleString('en-US', {minimumFractionDigits: 2}) }}</span>
               </div>
            </div>
            
            <!-- Checkout Buttons -->
            <div class="checkout-actions">
-              <button class="btn btn-primary btn-block checkout-btn">Proceed to Checkout</button>
-              <button class="btn btn-paypal btn-block">Check out with <strong>PayPal</strong></button>
-              <button class="btn btn-outline btn-block">Check Out with Multiple Addresses</button>
+              <button class="btn btn-primary btn-block checkout-btn" @click="viewStore.navigateTo('checkout')">Proceder al Pago</button>
+              <button class="btn btn-paypal btn-block">Pagar con <strong>PayPal</strong></button>
+              <button class="btn btn-outline btn-block">Pagar con Múltiples Direcciones</button>
            </div>
            
            <div class="zip-promo-sidebar">

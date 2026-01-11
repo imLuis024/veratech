@@ -4,78 +4,78 @@
       <!-- Newsletter Section -->
       <div class="newsletter-row">
         <div class="newsletter-content">
-          <h3>Sign Up To Our Newsletter.</h3>
-          <p>Be the first to hear about the latest offers.</p>
+          <h3>Suscríbete a nuestro Boletín.</h3>
+          <p>Sé el primero en enterarte de las últimas ofertas.</p>
         </div>
         <div class="newsletter-form">
-          <input type="email" placeholder="Your Email Address" />
-          <button class="btn btn-primary subscribe-btn">Subscribe</button>
+          <input type="email" placeholder="Tu Correo Electrónico" />
+          <button class="btn btn-primary subscribe-btn">Suscribirse</button>
         </div>
       </div>
 
       <div class="footer-grid">
         <div class="footer-col">
-          <h4>Information</h4>
+          <h4>Información</h4>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">About Zip</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Search</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Orders and Returns</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Advanced Search</a></li>
-            <li><a href="#">Newsletter Subscription</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Sobre Zip</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Buscar</a></li>
+            <li><a href="#">Términos</a></li>
+            <li><a href="#">Pedidos y Devoluciones</a></li>
+            <li><a href="#">Contáctanos</a></li>
+            <li><a href="#">Búsqueda Avanzada</a></li>
+            <li><a href="#">Suscripción al Boletín</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>PC Parts</h4>
+          <h4>Partes de PC</h4>
           <ul>
             <li><a href="#">CPUs</a></li>
-            <li><a href="#">Add On Cards</a></li>
-            <li><a href="#">Hard Drives (Internal)</a></li>
-            <li><a href="#">Graphic Cards</a></li>
-            <li><a href="#">Keyboards / Mice</a></li>
-            <li><a href="#">Cases / Power Supplies / Cooling</a></li>
-            <li><a href="#">RAM (Memory)</a></li>
+            <li><a href="#">Tarjetas de Expansión</a></li>
+            <li><a href="#">Discos Duros (Internos)</a></li>
+            <li><a href="#">Tarjetas Gráficas</a></li>
+            <li><a href="#">Teclados / Ratones</a></li>
+            <li><a href="#">Gabinetes / Fuentes / Ventilación</a></li>
+            <li><a href="#">Memoria RAM</a></li>
             <li><a href="#">Software</a></li>
-            <li><a href="#">Speakers / Headsets</a></li>
-            <li><a href="#">Motherboards</a></li>
+            <li><a href="#">Altavoces / Auriculares</a></li>
+            <li><a href="#">Placas Base</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Desktop PCs</h4>
+          <h4>PCs de Escritorio</h4>
           <ul>
-            <li><a href="#">Custom PCs</a></li>
-            <li><a href="#">Servers</a></li>
-            <li><a href="#">MSI All-In-One PCs</a></li>
-            <li><a href="#">HP/Compaq PCs</a></li>
-            <li><a href="#">ASUS PCs</a></li>
-            <li><a href="#">Tecs PCs</a></li>
+            <li><a href="#">PCs Personalizadas</a></li>
+            <li><a href="#">Servidores</a></li>
+            <li><a href="#">PCs MSI All-In-One</a></li>
+            <li><a href="#">PCs HP/Compaq</a></li>
+            <li><a href="#">PCs ASUS</a></li>
+            <li><a href="#">PCs Tecs</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Laptops</h4>
+          <h4>Portátiles</h4>
           <ul>
-            <li><a href="#">Evryday Use Notebooks</a></li>
-            <li><a href="#">MSI Workstation Series</a></li>
-            <li><a href="#">MSI Prestige Series</a></li>
-            <li><a href="#">Tablets and Pads</a></li>
+            <li><a href="#">Portátiles de Uso Diario</a></li>
+            <li><a href="#">Workstations MSI</a></li>
+            <li><a href="#">Serie MSI Prestige</a></li>
+            <li><a href="#">Tablets y Pads</a></li>
             <li><a href="#">Netbooks</a></li>
-            <li><a href="#">Infinity Gaming Notebooks</a></li>
+            <li><a href="#">Portátiles Gaming Infinity</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Address</h4>
-          <p>Address: 1234 Street Adress City Address, 1234</p>
-          <p>Phones: (00) 1234 5678</p>
-          <p>We are open: Monday-Thursday: 9:00 AM - 5:30 PM</p>
-          <p>Friday: 9:00 AM - 6:00 PM</p>
-          <p>Saturday: 11:00 AM - 5:00 PM</p>
+          <h4>Dirección</h4>
+          <p>Dirección: Calle Falsa 1234, Ciudad, 1234</p>
+          <p>Teléfonos: (00) 1234 5678</p>
+          <p>Horario: Lunes-Jueves: 9:00 AM - 5:30 PM</p>
+          <p>Viernes: 9:00 AM - 6:00 PM</p>
+          <p>Sábado: 11:00 AM - 5:00 PM</p>
           <p>
             <a href="mailto:shop@email.com" class="email-link"
               >shop@email.com</a
@@ -94,7 +94,7 @@
           <span>Visa</span> <span>Mastercard</span> <span>Paypal</span>
         </div>
         <p class="copyright">
-          Copyright © 2026 TechStore Inc. All rights reserved.
+          Copyright © 2026 TechStore Inc. Todos los derechos reservados.
         </p>
       </div>
     </div>

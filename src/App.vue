@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { computed } from "vue";
+import { useViewStore } from "./stores/view";
 import AppHeader from "./components/AppHeader.vue";
 import HeroSection from "./components/HeroSection.vue";
 import HomeCatalog from "./components/HomeCatalog.vue";
@@ -14,10 +15,11 @@ import AboutView from './components/AboutView.vue'
 import TermsView from './components/TermsView.vue'
 import AppFooter from "./components/AppFooter.vue";
 
-const currentView = ref('terms') // Default to terms for review
+const viewStore = useViewStore()
+const currentView = computed(() => viewStore.currentView)
 
 const toggleView = (view) => {
-  currentView.value = view;
+  viewStore.navigateTo(view)
 };
 </script>
 

@@ -5,10 +5,10 @@
     <div class="banner-content">
       <div class="container relative">
         <div class="promo-text">
-          <div class="promo-badge">WEEKLY DEAL</div>
-          <h1 class="promo-title">SCORE A BONUS<br />GAMING MONITOR</h1>
-          <p class="promo-desc">When you buy select GeForce RTX Desktop PCs</p>
-          <button class="btn btn-primary shop-now">SHOP NOW</button>
+          <div class="promo-badge">OFERTA SEMANAL</div>
+          <h1 class="promo-title">GANA UN MONITOR<br />GAMING DE REGALO</h1>
+          <p class="promo-desc">En la compra de PCs de Escritorio GeForce RTX seleccionadas</p>
+          <button class="btn btn-primary shop-now">COMPRAR AHORA</button>
         </div>
       </div>
     </div>

@@ -94,8 +94,8 @@ const laptopSeries = [
     <section class="catalog-section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">New Products</h2>
-          <a href="#" class="see-all">See All New Products ></a>
+          <h2 class="section-title">Productos Nuevos</h2>
+          <a href="#" class="see-all">Ver Todos los Productos Nuevos ></a>
         </div>
         <div class="product-grid-6">
           <ProductCard v-for="p in newProducts" :key="p.id" :product="p" />
@@ -110,15 +110,15 @@ const laptopSeries = [
         <div class="zip-banner">
           <span class="zip-logo">Zip</span>
           <span
-            >Own it now, pay later. <strong>Zip available now.</strong></span
+            >Cómpralo ahora, paga después. <strong>Zip disponible ahora.</strong></span
           >
         </div>
 
         <div class="split-layout">
           <div class="category-banner-card">
             <div class="cat-content">
-              <h3>Custom<br />Builds</h3>
-              <a href="#">See All Products</a>
+              <h3>Ensambles<br />Personalizados</h3>
+              <a href="#">Ver Todos los Productos</a>
             </div>
             <!-- Background Image via CSS -->
           </div>
@@ -133,16 +133,16 @@ const laptopSeries = [
     <section class="catalog-section">
       <div class="container">
         <div class="section-tab-nav">
-          <button class="tab active">MSI Laptops</button>
-          <button class="tab">MSI Desktops</button>
-          <button class="tab">MSI Monitors</button>
+          <button class="tab active">Laptops MSI</button>
+          <button class="tab">Escritorios MSI</button>
+          <button class="tab">Monitores MSI</button>
         </div>
 
         <div class="split-layout">
           <div class="category-banner-card laptops-banner">
             <div class="cat-content">
-              <h3>MSI<br />Laptops</h3>
-              <a href="#">See all Products</a>
+              <h3>Laptops<br />MSI</h3>
+              <a href="#">Ver Todos los Productos</a>
             </div>
           </div>
 

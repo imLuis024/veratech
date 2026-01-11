@@ -1,27 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import Breadcrumbs from './Breadcrumbs.vue'
 import ServiceIcons from './ServiceIcons.vue'
+import { useCartStore } from '../stores/cart'
+import { useViewStore } from '../stores/view'
 
-const breadcrumbs = ['Shopping Cart', 'Checkout Process']
+const breadcrumbs = ['Carrito de Compras', 'Proceso de Pago']
+const cartStore = useCartStore()
+const viewStore = useViewStore()
 
-// Mock Items for Summary
-const summaryItems = [
-  {
-    id: 1,
-    image: 'https://placehold.co/60x60/111/fff?text=PC',
-    name: 'MSI MEG Trident X 10SD-1012AU Intel i7 10700K, 2070 SUPER...',
-    qty: 1,
-    price: 3799.00
-  },
-  {
-    id: 2,
-    image: 'https://placehold.co/60x60/f5f5f5/333?text=Laptop',
-    name: 'MSI MEG Trident X 10SD-1012AU Intel i7 10700K, 2070 SUPER...',
-    qty: 1,
-    price: 3799.00
-  }
-]
+// Bind to store
+const summaryItems = computed(() => cartStore.cartItems)
+
+// Form submit handler
+const placeOrder = () => {
+    alert('¡Pedido realizado con éxito! Redirigiendo al Inicio...')
+    cartStore.clearCart()
+    viewStore.navigateTo('home')
+}
 </script>
 
 <template>
@@ -30,80 +26,80 @@ const summaryItems = [
       <Breadcrumbs :items="breadcrumbs" />
       
       <div class="checkout-header">
-        <h1>Checkout</h1>
-        <button class="btn btn-outline-blue sign-in-btn">Sign In</button>
+        <h1>Pago</h1>
+        <button class="btn btn-outline-blue sign-in-btn">Iniciar Sesión</button>
       </div>
       
       <!-- Progress Bar -->
       <div class="checkout-progress">
           <div class="step active">
              <div class="step-circle">✓</div>
-             <span>Shipping</span>
+             <span>Envío</span>
           </div>
           <div class="step-line"></div>
           <div class="step">
              <div class="step-circle">2</div>
-             <span>Review & Payments</span>
+             <span>Revisión y Pagos</span>
           </div>
       </div>
 
       <div class="checkout-layout">
         <!-- Left: Shipping Form -->
         <div class="shipping-section">
-           <h2 class="section-title">Shipping Address</h2>
+           <h2 class="section-title">Dirección de Envío</h2>
            
-           <form class="shipping-form" @submit.prevent>
+           <form class="shipping-form" @submit.prevent="placeOrder">
               <div class="form-group">
-                 <label>Email Address <span>*</span></label>
+                 <label>Correo Electrónico <span>*</span></label>
                  <input type="email" class="input-full" />
-                 <p class="help-text">You can create an account after checkout.</p>
+                 <p class="help-text">Puedes crear una cuenta después del pago.</p>
               </div>
               
               <div class="form-group">
-                 <label>First Name <span>*</span></label>
+                 <label>Nombre <span>*</span></label>
                  <input type="text" class="input-full" />
               </div>
               
               <div class="form-group">
-                 <label>Last Name <span>*</span></label>
+                 <label>Apellido <span>*</span></label>
                  <input type="text" class="input-full" />
               </div>
               
               <div class="form-group">
-                 <label>Company <span>*</span></label>
+                 <label>Compañía <span>*</span></label>
                  <input type="text" class="input-full" />
               </div>
               
               <div class="form-group">
-                 <label>Street Address <span>*</span></label>
+                 <label>Dirección <span>*</span></label>
                  <input type="text" class="input-full mb-2" />
                  <input type="text" class="input-full" />
               </div>
               
               <div class="form-group">
-                 <label>City <span>*</span></label>
+                 <label>Ciudad <span>*</span></label>
                  <input type="text" class="input-full" />
               </div>
               
               <div class="form-group">
-                 <label>State/Province <span>*</span></label>
+                 <label>Estado/Provincia <span>*</span></label>
                  <select class="input-full">
-                    <option>Please select a region, state or province</option>
+                    <option>Por favor selecciona una región, estado o provincia</option>
                  </select>
               </div>
               
               <div class="form-group">
-                 <label>Zip/Postal Code <span>*</span></label>
+                 <label>Código Postal <span>*</span></label>
                  <input type="text" class="input-full" />
               </div>
               
               <div class="form-group">
-                 <label>Country <span>*</span></label>
-                 <select class="input-full"><option>United States</option></select>
+                 <label>País <span>*</span></label>
+                 <select class="input-full"><option>México</option></select>
               </div>
               
               <div class="form-group">
-                 <label>Phone Number <span>*</span></label>
+                 <label>Número de Teléfono <span>*</span></label>
                  <input type="tel" class="input-full" />
               </div>
               
@@ -111,10 +107,10 @@ const summaryItems = [
               <div class="shipping-methods-section">
                  <div class="method-row">
                     <div class="method-label">
-                       <label>Standard Rate</label>
+                       <label>Tarifa Estándar</label>
                        <div class="radio-wrap">
                           <input type="radio" name="ship-method" checked />
-                          <span>Price may vary depending on the item/destination. Shop Staff will contact you. $21.00</span>
+                          <span>El precio puede variar según el artículo/destino. El personal se contactará contigo. $21.00</span>
                        </div>
                     </div>
                     <strong>$21.00</strong>
@@ -122,10 +118,10 @@ const summaryItems = [
                  
                  <div class="method-row">
                     <div class="method-label">
-                       <label>Pickup from store</label>
+                       <label>Recoger en tienda</label>
                        <div class="radio-wrap">
                           <input type="radio" name="ship-method" />
-                          <span>1234 Street Address City Address, 1234</span>
+                          <span>Calle Falsa 1234, Ciudad, 1234</span>
                        </div>
                     </div>
                     <strong>$0.00</strong>
@@ -133,7 +129,7 @@ const summaryItems = [
               </div>
               
               <div class="form-actions">
-                 <button class="btn btn-primary next-btn">Next</button>
+                 <button class="btn btn-primary next-btn">Realizar Pedido</button>
               </div>
               
            </form>
@@ -141,19 +137,19 @@ const summaryItems = [
 
         <!-- Right: Order Summary -->
         <div class="summary-sidebar">
-           <h3 class="summary-title">Order Summary</h3>
+           <h3 class="summary-title">Resumen del Pedido</h3>
            
            <div class="items-count-head">
-              <span>{{ summaryItems.length }} Items in Cart</span>
+              <span>{{ summaryItems.length }} Artículos en Carrito</span>
               <button class="toggle-btn">▲</button>
            </div>
            
            <div class="summary-items-list">
               <div v-for="item in summaryItems" :key="item.id" class="summary-item">
-                 <img :src="item.image" alt="Product" />
+                 <img :src="item.image" alt="Producto" />
                  <div class="item-info">
                     <p class="item-name">{{ item.name }}</p>
-                    <p class="item-meta">Qty {{ item.qty }} <strong class="item-price">${{ item.price.toFixed(2) }}</strong></p>
+                    <p class="item-meta">Cant {{ item.qty }} <strong class="item-price">${{ item.price.toFixed(2) }}</strong></p>
                  </div>
               </div>
            </div>

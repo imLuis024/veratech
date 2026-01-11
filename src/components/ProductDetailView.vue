@@ -10,22 +10,34 @@ const breadcrumbs = ['Laptops', 'MSI WS Series', 'MSI MPG Trident 3']
 const productStore = useProductStore()
 const cartStore = useCartStore()
 
+// Local UI state
+const qty = ref(1)
+const activeColor = ref('black')
+
 // Get Product (ID 999 is the default mock PDP product)
 const product = computed(() => productStore.getProductById(999))
 
+const decreaseQty = () => {
+    if (qty.value > 1) qty.value--
+}
+
+const increaseQty = () => {
+    qty.value++
+}
+
 const addToCart = () => {
   if (product.value) {
-    cartStore.addToCart(product.value, 1)
-    // Optional: Feedback (e.g. alert or toast)
-    // for now just simple action
+    cartStore.addToCart(product.value, qty.value)
+    // Optional: Reset qty or give feedback
+    qty.value = 1 
   }
 }
 
 const features = [
-  { title: 'Intel® Core™ i7', desc: 'processor with the upmost computing power to bring you an unparalleled gaming experience.', icon: 'https://placehold.co/80x80/000/fff?text=Intel' },
-  { title: 'GeForce® RTX SUPER™', desc: 'Series has more cores and higher clocks for superfast performance compared to previous-gen GPUs.', icon: 'https://placehold.co/80x80/000/fff?text=RTX' },
-  { title: 'SSD Data', desc: 'Unleash the full potential with the latest SSD technology, the NVM Express, 6 times faster than traditional SATA SSD.', icon: 'https://placehold.co/80x80/000/fff?text=SSD' },
-  { title: 'DDR4 RAM', desc: 'Featuring the latest 10th Gen Intel® Core™ processors, memory support up to DDR4 2933MHz.', icon: 'https://placehold.co/80x80/000/fff?text=DDR4' }
+  { title: 'Intel® Core™ i7', desc: 'procesador con la máxima potencia informática para brindarte una experiencia de juego incomparable.', icon: 'https://placehold.co/80x80/000/fff?text=Intel' },
+  { title: 'GeForce® RTX SUPER™', desc: 'La serie tiene más núcleos y frecuencias más altas para un rendimiento superrápido en comparación con las GPU de la generación anterior.', icon: 'https://placehold.co/80x80/000/fff?text=RTX' },
+  { title: 'SSD Data', desc: 'Libera todo el potencial con la última tecnología SSD, NVM Express, 6 veces más rápido que los SSD SATA tradicionales.', icon: 'https://placehold.co/80x80/000/fff?text=SSD' },
+  { title: 'DDR4 RAM', desc: 'Con los últimos procesadores Intel® Core™ de 10.ª generación, soporte de memoria hasta DDR4 2933MHz.', icon: 'https://placehold.co/80x80/000/fff?text=DDR4' }
 ]
 </script>
 
@@ -36,19 +48,19 @@ const features = [
     <div class="sticky-bar">
       <div class="container sticky-content">
         <nav class="sticky-nav">
-          <a href="#" class="active">About Product</a>
-          <a href="#">Details</a>
-          <a href="#">Specs</a>
+          <a href="#" class="active">Sobre el Producto</a>
+          <a href="#">Detalles</a>
+          <a href="#">Especificaciones</a>
         </nav>
         
         <div class="sticky-actions">
-           <span class="sale-price">On Sale from <strong>${{ product?.price.toLocaleString() }}</strong></span>
+           <span class="sale-price">En oferta desde <strong>${{ product?.price.toLocaleString() }}</strong></span>
            <div class="qty-control">
-             <button>-</button>
-             <span>1</span>
-             <button>+</button>
+             <button @click="decreaseQty">-</button>
+             <span>{{ qty }}</span>
+             <button @click="increaseQty">+</button>
            </div>
-           <button class="btn btn-primary add-cart" @click="addToCart">Add to Cart</button>
+           <button class="btn btn-primary add-cart" @click="addToCart">Añadir al Carrito</button>
            <button class="btn paypal-btn">PayPal</button>
         </div>
       </div>
@@ -61,24 +73,24 @@ const features = [
           <Breadcrumbs :items="breadcrumbs" />
           
           <h1 class="pdp-title">{{ product?.name }}</h1>
-          <a href="#" class="review-link">Be the first to review this product</a>
+          <a href="#" class="review-link">Sé el primero en opinar sobre este producto</a>
           
           <p class="pdp-desc">
             {{ product?.description }}
           </p>
           
           <div class="color-picker">
-            <span class="color-dot black active"></span>
-            <span class="color-dot gold"></span>
-            <span class="color-dot silver"></span>
+            <span class="color-dot black" :class="{ active: activeColor === 'black' }" @click="activeColor = 'black'" title="Negro"></span>
+            <span class="color-dot gold" :class="{ active: activeColor === 'gold' }" @click="activeColor = 'gold'" title="Dorado"></span>
+            <span class="color-dot silver" :class="{ active: activeColor === 'silver' }" @click="activeColor = 'silver'" title="Plateado"></span>
           </div>
           
           <div class="pdp-meta">
-            <a href="#">Have a Question? <strong>Contact Us</strong></a>
+            <a href="#">¿Tienes una pregunta? <strong>Contáctanos</strong></a>
             <span class="sku">SKU: {{ product?.sku || 'D5515AI' }}</span>
           </div>
           
-          <div class="more-info-link">+ MORE INFORMATION</div>
+          <div class="more-info-link">+ MÁS INFORMACIÓN</div>
         </div>
         
         <div class="hero-gallery">
@@ -89,7 +101,7 @@ const features = [
            </div>
            <img :src="product?.image" :alt="product?.name" class="main-img" />
            <div class="zip-promo">
-              <span class="zip-logo">zip</span> own it now, pay in 4, interest free.
+              <span class="zip-logo">zip</span> cómpralo ahora, paga en 4, sin intereses.
            </div>
         </div>
       </div>
@@ -99,12 +111,12 @@ const features = [
     <section class="marketing-banner">
        <div class="container banner-grid">
           <div class="banner-text-content">
-             <h2>Outplay the<br>Competition</h2>
-             <p>Experience a 40% boost in computing from last generation. MSI Desktop equips the 10th Gen. Intel® Core™ i7 processor with the upmost computing power to bring you an unparalleled gaming experience.</p>
-             <p class="disclaimer">*Performance compared to i7-9700. Specs varies by model.</p>
+             <h2>Supera a la<br>Competencia</h2>
+             <p>Experimenta un aumento del 40% en computación con respecto a la última generación. El escritorio MSI equipa el procesador Intel® Core™ i7 de 10.ª generación con la máxima potencia informática para brindarte una experiencia de juego incomparable.</p>
+             <p class="disclaimer">*Rendimiento comparado con i7-9700. Las especificaciones varían según el modelo.</p>
           </div>
           <div class="banner-visual">
-             <img src="https://placehold.co/400x300/000/3b82f6?text=Intel+Core+ i7" alt="Processor" />
+             <img src="https://placehold.co/400x300/000/3b82f6?text=Intel+Core+ i7" alt="Procesador" />
           </div>
        </div>
     </section>
@@ -113,12 +125,12 @@ const features = [
     <section class="support-section">
        <div class="container support-container">
           <div class="support-links">
-             <button class="support-tab">Product Support →</button>
-             <button class="support-tab">FAQ →</button>
-             <button class="support-tab">Our buyer guide →</button>
+             <button class="support-tab">Soporte del Producto →</button>
+             <button class="support-tab">Preguntas Frecuentes →</button>
+             <button class="support-tab">Nuestra guía de compra →</button>
           </div>
           <div class="support-visual">
-             <img src="https://placehold.co/600x400/f5f5f5/ccc?text=Support+Person" alt="Support" />
+             <img src="https://placehold.co/600x400/f5f5f5/ccc?text=Soporte" alt="Soporte" />
           </div>
        </div>
     </section>
@@ -126,13 +138,13 @@ const features = [
     <!-- Features Grid (Black) -->
     <section class="features-section">
        <div class="container">
-          <h2 class="features-title">Features</h2>
-          <p class="features-subtitle">The MPG series brings out the best in gamers by allowing full expression in color with advanced RGB lighting control and synchronization.</p>
+          <h2 class="features-title">Características</h2>
+          <p class="features-subtitle">La serie MPG saca lo mejor de los gamers al permitir una expresión completa en color con control y sincronización avanzados de iluminación RGB.</p>
           
           <div class="features-grid">
              <div class="feature-item" v-for="(f, i) in features" :key="i">
                 <div class="icon-circle">
-                   <img :src="f.icon" alt="icon" />
+                   <img :src="f.icon" alt="icono" />
                 </div>
                 <p><strong>{{ f.title }}</strong> {{ f.desc }}</p>
              </div>

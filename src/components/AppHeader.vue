@@ -1,17 +1,17 @@
 <script setup>
 const topLinks = [
-  { name: "Support", href: "#" },
-  { name: "Store Locations", href: "#" },
-  { name: "Track Order", href: "#" },
+  { name: "Soporte", href: "#" },
+  { name: "Sucursales", href: "#" },
+  { name: "Rastrear Pedido", href: "#" },
 ];
 
 const categories = [
-  { name: "Laptops", href: "#" },
-  { name: "Desktops", href: "#" },
-  { name: "Monitors", href: "#" },
-  { name: "Components", href: "#" },
-  { name: "Accessories", href: "#" },
-  { name: "Networking", href: "#" },
+  { name: "Portátiles", href: "#" },
+  { name: "Escritorio", href: "#" },
+  { name: "Monitores", href: "#" },
+  { name: "Componentes", href: "#" },
+  { name: "Accesorios", href: "#" },
+  { name: "Redes", href: "#" },
 ];
 </script>
 
@@ -21,7 +21,7 @@ const categories = [
     <div class="top-bar">
       <div class="container top-bar-content">
         <div class="top-left">
-          <span>Welcome to TechStore Gaming</span>
+          <span>Bienvenido a TechStore Gaming</span>
         </div>
         <div class="top-right">
           <ul class="top-menu">
@@ -29,7 +29,7 @@ const categories = [
               <a :href="link.href">{{ link.name }}</a>
             </li>
             <li class="separator">|</li>
-            <li><a href="#" class="login-link">Sign In / Register</a></li>
+            <li><a href="#" class="login-link">Iniciar Sesión / Registro</a></li>
           </ul>
         </div>
       </div>
@@ -49,11 +49,11 @@ const categories = [
         <div class="search-wrapper">
           <div class="search-input-group">
             <select class="category-select">
-              <option>All Categories</option>
-              <option>Laptops</option>
-              <option>Desktops</option>
+              <option>Todas las Categorías</option>
+              <option>Portátiles</option>
+              <option>Escritorios</option>
             </select>
-            <input type="text" placeholder="Search for products..." />
+            <input type="text" placeholder="Buscar productos..." />
             <button class="search-btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ const categories = [
 
         <!-- Actions -->
         <div class="header-actions">
-          <button class="action-item" aria-label="Wishlist">
+          <button class="action-item" aria-label="Lista de Deseos">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -91,9 +91,9 @@ const categories = [
                 d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
               ></path>
             </svg>
-            <span class="action-label">Wishlist</span>
+            <span class="action-label">Favoritos</span>
           </button>
-          <button class="action-item" aria-label="Cart">
+          <button class="action-item" aria-label="Carrito">
             <div class="icon-wrapper">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@ const categories = [
               </svg>
               <span class="badge">2</span>
             </div>
-            <span class="action-label">Cart</span>
+            <span class="action-label">Carrito</span>
           </button>
         </div>
       </div>
@@ -127,7 +127,7 @@ const categories = [
           <li v-for="cat in categories" :key="cat.name">
             <a :href="cat.href" class="nav-link">{{ cat.name }}</a>
           </li>
-          <li class="sale-link"><a href="#">Deals</a></li>
+          <li class="sale-link"><a href="#">Ofertas</a></li>
         </ul>
       </div>
     </div>

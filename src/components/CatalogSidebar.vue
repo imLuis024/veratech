@@ -3,29 +3,29 @@
 <template>
   <aside class="sidebar">
     <div class="filters-header">
-      <h3>Filters</h3>
-      <button class="clear-btn">Clear Filter</button>
+      <h3>Filtros</h3>
+      <button class="clear-btn">Limpiar Filtro</button>
     </div>
 
     <!-- Category Filter -->
     <div class="filter-group">
-      <h4>Category</h4>
+      <h4>Categoría</h4>
       <ul>
         <li>
-          <a href="#">Custom PCs <span>15</span></a>
+          <a href="#">PCs Personalizadas <span>15</span></a>
         </li>
         <li>
-          <a href="#">MSI All-in-One PCs <span>45</span></a>
+          <a href="#">PCs All-in-One MSI <span>45</span></a>
         </li>
         <li>
-          <a href="#">HP/Compaq PCs <span>1</span></a>
+          <a href="#">PCs HP/Compaq <span>1</span></a>
         </li>
       </ul>
     </div>
 
     <!-- Price Filter -->
     <div class="filter-group">
-      <h4>Price</h4>
+      <h4>Precio</h4>
       <ul>
         <li>
           <a href="#">$0.00 - $1,000.00 <span>19</span></a>
@@ -49,7 +49,7 @@
           <a href="#">$6,000.00 - $7,000.00 <span>1</span></a>
         </li>
         <li>
-          <a href="#">$7,000.00 And Above <span>1</span></a>
+          <a href="#">$7,000.00 Y Más <span>1</span></a>
         </li>
       </ul>
     </div>
@@ -65,14 +65,14 @@
 
     <!-- Filter Name -->
     <div class="filter-group">
-      <h4>Filter Name</h4>
-      <button class="btn btn-primary apply-btn">Apply Filters (2)</button>
+      <h4>Nombre del Filtro</h4>
+      <button class="btn btn-primary apply-btn">Aplicar Filtros (2)</button>
     </div>
 
     <!-- Brands Grid -->
     <div class="brands-widget">
-      <h4>Brands</h4>
-      <button class="all-brands-btn">All Brands</button>
+      <h4>Marcas</h4>
+      <button class="all-brands-btn">Todas las Marcas</button>
       <div class="brands-grid">
         <div class="brand-box">ROCCAT</div>
         <div class="brand-box">MSI</div>
@@ -86,14 +86,14 @@
 
     <!-- Widget: Compare Products -->
     <div class="widget">
-      <h4>Compare Products</h4>
-      <p class="empty-msg">You have no items to compare.</p>
+      <h4>Comparar Productos</h4>
+      <p class="empty-msg">No tienes artículos para comparar.</p>
     </div>
 
     <!-- Widget: My Wish List -->
     <div class="widget">
-      <h4>My Wish List</h4>
-      <p class="empty-msg">You have no items in your wish list.</p>
+      <h4>Lista de Deseos</h4>
+      <p class="empty-msg">No tienes artículos en tu lista.</p>
     </div>
 
     <!-- Sidebar Ad -->

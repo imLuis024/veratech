@@ -4,16 +4,24 @@ import CatalogSidebar from "./CatalogSidebar.vue"
 import Breadcrumbs from "./Breadcrumbs.vue"
 import ProductCard from "./ProductCard.vue"
 import { useProductStore } from '../stores/product'
+import { useViewStore } from '../stores/view'
 
 const productStore = useProductStore()
+const viewStore = useViewStore()
 const products = computed(() => productStore.products)
 
 const breadcrumbs = [
-  "Laptops",
-  "Everyday Use Notebooks",
-  "MSI Prestige Series",
-  "MSI WS Series",
+  "Portátiles",
+  "Uso Diario",
+  "Serie MSI Prestige",
+  "Serie MSI WS",
 ]
+
+const openProduct = (id) => {
+    // Ideally we'd set the current product ID in the store first
+    // For now we just navigate to the static Product Detail view
+    viewStore.navigateTo('product')
+}
 </script>
 
 <template>
@@ -23,14 +31,14 @@ const breadcrumbs = [
       <div class="catalog-banner">
         <div class="banner-text">
           <span>ASUS TUF GAMING FX505</span>
-          <h2>HIGH PERFORMANCE AT AN AFFORDABLE PRICE</h2>
-          <button class="shop-now-sm">Shop Now</button>
+          <h2>ALTO RENDIMIENTO A UN PRECIO ASEQUIBLE</h2>
+          <button class="shop-now-sm">Comprar Ahora</button>
         </div>
       </div>
 
       <Breadcrumbs :items="breadcrumbs" />
 
-      <h1>MSI PS Series (20)</h1>
+      <h1>Serie MSI PS (20)</h1>
 
       <div class="layout-grid">
         <CatalogSidebar />
@@ -39,41 +47,41 @@ const breadcrumbs = [
           <!-- Toolbar -->
           <div class="toolbar">
             <div class="toolbar-left">
-              <button class="back-link">‹ Back</button>
-              <span class="items-count">Items 1-35 of 61</span>
+              <button class="back-link">‹ Atrás</button>
+              <span class="items-count">Artículos 1-35 de 61</span>
             </div>
             <div class="toolbar-right">
               <div class="select-group">
-                <label>Sort By</label>
+                <label>Ordenar Por</label>
                 <select>
-                  <option>Position</option>
+                  <option>Posición</option>
                 </select>
               </div>
               <div class="select-group">
-                <label>Show</label>
+                <label>Mostrar</label>
                 <select>
-                  <option>35 per page</option>
+                  <option>35 por página</option>
                 </select>
               </div>
               <div class="view-toggles">
-                <button class="active">Grid</button>
-                <button>List</button>
+                <button class="active">Cuadrícula</button>
+                <button>Lista</button>
               </div>
             </div>
           </div>
 
           <!-- Active Filters -->
           <div class="active-filters">
-            <div class="tag">CUSTOM PCS (24) <button class="x">×</button></div>
+            <div class="tag">PCS PERSONALIZADAS (24) <button class="x">×</button></div>
             <div class="tag">
-              HP/COMPAQ PCS (24) <button class="x">×</button>
+              PCS HP/COMPAQ (24) <button class="x">×</button>
             </div>
-            <button class="clear-all">Clear All</button>
+            <button class="clear-all">Borrar Todos</button>
           </div>
 
           <!-- Product Grid - 5 Columns -->
           <div class="catalog-grid">
-            <ProductCard v-for="p in products" :key="p.id" :product="p" />
+            <ProductCard v-for="p in products" :key="p.id" :product="p" @click="openProduct(p.id)" />
           </div>
 
           <!-- Pagination -->
@@ -88,12 +96,12 @@ const breadcrumbs = [
 
           <div class="seo-text">
             <p>
-              MSI has unveiled the Prestige Series line of business-class and
-              gaming notebooks. Tuned for color accuracy, the Prestige Series
-              also leverages True Color Technology.
+              MSI ha presentado la línea Prestige Series de portátiles empresariales y
+              para juegos. Ajustada para la precisión del color, la serie Prestige
+              también aprovecha la tecnología True Color.
             </p>
             <br />
-            <button class="more-btn">More</button>
+            <button class="more-btn">Más</button>
           </div>
         </main>
       </div>
