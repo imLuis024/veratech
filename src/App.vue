@@ -27,54 +27,6 @@ const toggleView = (view) => {
   <div class="app-layout">
     <AppHeader />
 
-    <!-- Temporary Dev Switcher -->
-    <div
-      style="
-        background: #333;
-        color: white;
-        padding: 5px;
-        text-align: center;
-        font-size: 12px;
-      "
-    >
-      DEV MODE:
-      <button
-        @click="toggleView('home')"
-        :style="{
-          fontWeight: currentView === 'home' ? 'bold' : 'normal',
-          color: 'white',
-        }"
-      >
-        Home
-      </button>
-      |
-      <button
-        @click="toggleView('catalog')"
-        :style="{
-          fontWeight: currentView === 'catalog' ? 'bold' : 'normal',
-          color: 'white',
-        }"
-      >
-        Catalog
-      </button>
-      |
-      <button
-        @click="toggleView('product')"
-        :style="{
-          fontWeight: currentView === 'product' ? 'bold' : 'normal',
-          color: 'white',
-        }"
-      >
-        Product
-      </button>
-      |
-      <button @click="toggleView('contact')" :style="{ fontWeight: currentView === 'contact' ? 'bold' : 'normal', color: 'white' }">Contact</button> | 
-      <button @click="toggleView('cart')" :style="{ fontWeight: currentView === 'cart' ? 'bold' : 'normal', color: 'white' }">Cart</button> | 
-      <button @click="toggleView('checkout')" :style="{ fontWeight: currentView === 'checkout' ? 'bold' : 'normal', color: 'white' }">Checkout</button> | 
-      <button @click="toggleView('account')" :style="{ fontWeight: currentView === 'account' ? 'bold' : 'normal', color: 'white' }">Account</button> | 
-      <button @click="toggleView('about')" :style="{ fontWeight: currentView === 'about' ? 'bold' : 'normal', color: 'white' }">About</button> | 
-      <button @click="toggleView('terms')" :style="{ fontWeight: currentView === 'terms' ? 'bold' : 'normal', color: 'white' }">Terms</button>
-    </div>
 
     <main v-if="currentView === 'home'">
       <HeroSection />

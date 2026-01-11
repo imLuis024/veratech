@@ -1,134 +1,84 @@
 <script setup>
-const topLinks = [
-  { name: "Soporte", href: "#" },
-  { name: "Sucursales", href: "#" },
-  { name: "Rastrear Pedido", href: "#" },
+import { useViewStore } from "../stores/view";
+
+const viewStore = useViewStore();
+
+const navLinks = [
+  { name: "Laptops", view: "catalog" },
+  { name: "Desktop PCs", view: "catalog" },
+  { name: "Networking Devices", view: "catalog" },
+  { name: "Printers & Scanners", view: "catalog" },
+  { name: "PC Parts", view: "catalog" },
+  { name: "All Other Products", view: "catalog" },
+  { name: "Repairs", view: "catalog" },
 ];
 
-const categories = [
-  { name: "Portátiles", href: "#" },
-  { name: "Escritorio", href: "#" },
-  { name: "Monitores", href: "#" },
-  { name: "Componentes", href: "#" },
-  { name: "Accesorios", href: "#" },
-  { name: "Redes", href: "#" },
-];
+const navigateTo = (view) => {
+  viewStore.navigateTo(view);
+};
 </script>
 
 <template>
   <header class="app-header">
-    <!-- Top Bar: Black -->
+    <!-- Top Bar -->
     <div class="top-bar">
       <div class="container top-bar-content">
         <div class="top-left">
-          <span>Bienvenido a TechStore Gaming</span>
+          <span>Mon-Thu: <strong>9:00 AM - 5:30 PM</strong></span>
+          <span class="chevron-down">▾</span>
+        </div>
+        <div class="top-center">
+          <span>Visit our showroom in 1234 Street Adress City Address, 1234 <a href="#" @click.prevent="navigateTo('contact')" class="contact-link">Contact Us</a></span>
         </div>
         <div class="top-right">
-          <ul class="top-menu">
-            <li v-for="link in topLinks" :key="link.name">
-              <a :href="link.href">{{ link.name }}</a>
-            </li>
-            <li class="separator">|</li>
-            <li><a href="#" class="login-link">Iniciar Sesión / Registro</a></li>
-          </ul>
+          <span class="phone">Call Us: (00) 1234 5678</span>
+          <div class="social-icons">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Main Header: White -->
+    <!-- Main Header -->
     <div class="main-header">
       <div class="container main-header-content">
         <!-- Logo -->
-        <a href="#" class="logo">
-          <span class="logo-text"
-            >TECH<span class="highlight">STORE</span></span
-          >
+        <a href="#" @click.prevent="navigateTo('home')" class="logo">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L2 12V28L20 38L38 28V12L20 2Z" fill="#0066FF" stroke="none"/>
+            <path d="M20 7L6 15V25L20 33L34 25V15L20 7Z" fill="#ffffff" stroke="none" opacity="0.3"/>
+             <path d="M14 22L11 19L20 13L29 19L24 22V26L20 29L14 26V22Z" fill="white"/>
+          </svg>
         </a>
 
-        <!-- Search Bar -->
-        <div class="search-wrapper">
-          <div class="search-input-group">
-            <select class="category-select">
-              <option>Todas las Categorías</option>
-              <option>Portátiles</option>
-              <option>Escritorios</option>
-            </select>
-            <input type="text" placeholder="Buscar productos..." />
-            <button class="search-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </div>
-        </div>
+        <!-- Navigation -->
+        <nav class="main-nav">
+          <ul>
+            <li v-for="link in navLinks" :key="link.name">
+              <a href="#" @click.prevent="navigateTo(link.view)">{{ link.name }}</a>
+            </li>
+          </ul>
+        </nav>
 
-        <!-- Actions -->
+         <!-- Deals Button -->
+        <a href="#" @click.prevent="navigateTo('catalog')" class="deals-btn">Our Deals</a>
+
+        <!-- Right Side Icons -->
         <div class="header-actions">
-          <button class="action-item" aria-label="Lista de Deseos">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-              ></path>
-            </svg>
-            <span class="action-label">Favoritos</span>
+           <button class="icon-btn search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
-          <button class="action-item" aria-label="Carrito">
-            <div class="icon-wrapper">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path
-                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-                ></path>
-              </svg>
-              <span class="badge">2</span>
-            </div>
-            <span class="action-label">Carrito</span>
+          
+          <button class="icon-btn cart-btn" @click="navigateTo('cart')">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+             <span class="badge">2</span>
+          </button>
+
+          <button class="profile-btn" @click="navigateTo('account')">
+             <img src="https://i.pravatar.cc/150?img=11" alt="User Profile" class="avatar" />
           </button>
         </div>
-      </div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <div class="nav-bar">
-      <div class="container">
-        <ul class="nav-list">
-          <li v-for="cat in categories" :key="cat.name">
-            <a :href="cat.href" class="nav-link">{{ cat.name }}</a>
-          </li>
-          <li class="sale-link"><a href="#">Ofertas</a></li>
-        </ul>
       </div>
     </div>
   </header>
@@ -136,16 +86,23 @@ const categories = [
 
 <style scoped>
 .app-header {
+  font-family: 'Inter', sans-serif; /* Assuming Inter is available or fallback */
   width: 100%;
-  box-shadow: var(--shadow-sm);
+  background: white;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Top Bar */
 .top-bar {
   background-color: #000000;
-  color: #cccccc;
-  font-size: 0.75rem;
-  padding: 0.5rem 0;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 8px 0;
 }
 
 .top-bar-content {
@@ -154,155 +111,141 @@ const categories = [
   align-items: center;
 }
 
-.top-menu {
+.top-left, .top-center, .top-right {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-link {
+  color: #fff;
+  text-decoration: underline;
+  margin-left: 2px;
+}
+
+.phone {
+  margin-right: 15px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons a {
+  color: white;
+  display: flex;
   align-items: center;
 }
 
-.separator {
-  color: #444;
-}
-
-.login-link {
-  color: white;
-  font-weight: 600;
+.chevron-down {
+  font-size: 10px;
+  color: #888;
 }
 
 /* Main Header */
 .main-header {
-  background-color: var(--color-surface);
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: 20px 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .main-header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 20px;
 }
 
-.logo-text {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--color-text-main);
-  letter-spacing: -1px;
+/* Logo */
+.logo svg {
+  display: block;
 }
 
-.highlight {
-  color: var(--color-primary);
-}
-
-/* Search */
-.search-wrapper {
-  flex: 1;
-  max-width: 600px;
-}
-
-.search-input-group {
+/* Navigation */
+.main-nav ul {
   display: flex;
-  border: 2px solid var(--color-primary);
-  border-radius: var(--radius-full);
-  overflow: hidden;
+  list-style: none;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
 }
 
-.category-select {
-  background: #f3f4f6;
-  border: none;
-  padding: 0 1rem;
-  font-size: var(--text-sm);
-  color: var(--color-text-main);
-  border-right: 1px solid #ddd;
-  outline: none;
-  cursor: pointer;
+.main-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
-.search-input-group input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: none;
-  outline: none;
-  font-size: var(--text-base);
+.main-nav a:hover {
+  color: #0066FF;
 }
 
-.search-btn {
-  background: var(--color-primary);
+/* Deals Button */
+.deals-btn {
+  border: 2px solid #0066FF;
+  color: #0066FF;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.deals-btn:hover {
+  background-color: #0066FF;
   color: white;
-  padding: 0 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
 }
 
-.search-btn:hover {
-  background: var(--color-primary-dark);
-}
-
-/* Actions */
+/* Header Actions */
 .header-actions {
   display: flex;
-  gap: 1.5rem;
-}
-
-.action-item {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  color: var(--color-text-main);
-  font-size: 0.75rem;
+  gap: 20px;
 }
 
-.icon-wrapper {
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
   position: relative;
+  color: #000;
 }
 
 .badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background: var(--color-primary);
+  top: -8px;
+  right: -8px;
+  background-color: #0066FF;
   color: white;
-  font-size: 0.7rem;
-  width: 18px;
-  height: 18px;
+  font-size: 10px;
+  font-weight: bold;
+  height: 16px;
+  width: 16px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  border: 2px solid white;
 }
 
-/* Navigation */
-.nav-bar {
-  background: white;
-  border-bottom: 1px solid var(--color-border);
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
-.nav-list {
-  display: flex;
-  gap: 2rem;
-  padding: 1rem 0;
-}
-
-.nav-link {
-  font-weight: 600;
-  color: var(--color-text-main);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-}
-
-.nav-link:hover {
-  color: var(--color-primary);
-}
-
-.sale-link a {
-  color: var(--color-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.9rem;
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 </style>
